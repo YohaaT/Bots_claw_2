@@ -1,0 +1,56 @@
+Video: Ce que j'aurais voulu savoir avant de me lancer dans le trading
+Source: user-provided transcript
+
+Key lessons extracted
+- Trading is a métier, not a game.
+- Psychology matters, but only if biases are identified concretely and reviewed trade by trade.
+- Review trades the next day, not hot/immediately after.
+- Do not use naked signals; context matters.
+- Do not wait systematically for confirmation/pullback; often the move leaves without you.
+- Never average down to avoid validating a loss.
+- Do not move stop loss farther to avoid pain.
+- Limit consecutive losses and stop trading for the session/day when needed.
+- Use minimal leverage, especially as beginner.
+- Money management does not create edge; it protects capital.
+- Avoid indicator overload; simple, assimilated methods are preferred.
+- One strategy does not fit all market states.
+- Need different handling for:
+  - trend start,
+  - trend continuation,
+  - impulse,
+  - trend exhaustion/exaggeration,
+  - opening session / event-driven contexts.
+- Exits are neglected and must be studied explicitly.
+- Relative strength is highlighted as a major practical edge.
+
+Configurations / practical implications for our research
+1. Architecture preference confirmed:
+   signal + context + exit + risk management
+2. Strong recommendation to prioritize relative strength as top-level directional/context filter.
+3. Strong recommendation against over-combining indicators.
+4. Market-regime adaptation is required; methods must be regime-aware.
+5. Session risk rule candidate:
+   - stop after 2 losing trades in half-day or 3 in full day (example from speaker, not universal rule)
+6. Prefer a small number of well-understood modules over large indicator stacks.
+
+Most useful modules from our current corpus reinforced by this video
+- Context/regime filters:
+  - NeutralZone / NeutralZone_B_V2
+  - Trend Filter V2
+  - XLB indicator/filter
+  - ATR Min Max
+  - Block Hours / Block Day
+  - Relative strength / Indice de force family
+- Exits:
+  - Stop Intelligent family
+  - Mogalef Stop
+- Signals:
+  - Divergences
+  - Breakouts
+  - XLB signal
+
+Immediate research consequences
+- Build prototypes with one entry + one context filter + one stop.
+- Add relative strength early as directional bias.
+- Do not optimize large indicator bundles first.
+- Add explicit post-trade review / error tagging in research workflow.

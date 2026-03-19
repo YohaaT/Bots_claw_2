@@ -1,0 +1,56 @@
+Video: Apprendre le métier de trader - Bases indispensables
+Source: user-provided transcript
+Purpose: convert content into durable bot-guidance / research directives
+
+Core directives extracted
+- Treat trading as a métier/profession, not as a hobby.
+- A strategy is not enough; the operator must understand rules, safety, protocols, and market context.
+- Do not expect to become competent quickly; no instant mastery.
+- Every method must be used only in its favorable environment.
+- Avoid averaging down; a loss remains a loss even if later compensated elsewhere.
+- Do not move stop-loss away to avoid pain.
+- Money management protects capital; it does not create profits by itself.
+- Optimizing only stop/target geometry is not enough; filters/context are needed.
+- Exits should not rely on hope; trailing/exit logic must be explicit and understood.
+- Market understanding should be built from flows and structure, not slogans like 'more buyers than sellers'.
+- Support/resistance, acceleration, action-reaction, and range structure should be interpreted through participant imbalance.
+- Fewer well-understood indicators are preferable to overloaded screens.
+- Each market state may require a different method.
+- Preserve continuity of practice; long interruptions degrade execution skill.
+- Never adopt an indicator or technique in real trading without verifying/testing it first.
+
+Learning sequence / bot training sequence implied
+1. Learn market structure interpretation.
+2. Learn to recognize entry structures.
+3. Learn to recognize exit structures.
+4. Understand the indicators used and how they are built.
+5. Demo / paper training.
+6. Real trading with very small size.
+7. Continuous review of losing trades.
+8. Gradual size increase only after stability.
+9. Permanent search for better context filters and execution discipline.
+
+Actionable directives for future bot
+- Bot should prefer context-aware trades over naked signals.
+- Bot should tag market regime before evaluating an entry.
+- Bot should record and analyze losing trades more deeply than winning trades.
+- Bot should avoid signal overload and prefer simple modular combinations.
+- Bot should support separate modules for:
+  - structure/context,
+  - entry,
+  - exit,
+  - session/volatility filters,
+  - risk sizing.
+- Bot should treat relative strength and structural context as high-priority filters.
+- Bot should not infer that a profitable backtest from one regime generalizes to all regimes.
+- Bot should track consecutive losses and allow session/day stop rules.
+
+Research consequences
+- Prioritize research on signal + filter combinations, not raw entries only.
+- Evaluate robustness across different market regimes.
+- Explicitly test whether exits/stops are doing the real heavy lifting.
+- Use modular backtests that separate:
+  entry edge,
+  context filter edge,
+  exit edge,
+  risk sizing effects.

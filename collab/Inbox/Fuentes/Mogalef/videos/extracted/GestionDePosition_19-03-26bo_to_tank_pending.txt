@@ -1,0 +1,20 @@
+Video: 4 Gestion de position - L'avantage ignoré par le trader débutant
+Source: user-provided transcript
+
+Directrices extraídas
+- La gestión de posición es un pilar independiente de entrada, stop y money management.
+- Comparación clave de estilos:
+  - clásica fija,
+  - pyramide,
+  - triangle,
+  - barrique.
+- La pirámide, aunque cómoda psicológicamente, resulta muy desfavorable y riesgosa.
+- La 'barrique' es la más robusta de las comparadas.
+- La gestión de posición puede cambiar mucho el resultado final aunque la entrada sea igual.
+- No hay que confundir confort psicológico con ventaja estadística.
+
+Implicaciones para bot
+- Bot debe soportar módulos de scaling in/out explícitos.
+- Bot no debe asumir que añadir en ganancia tipo pirámide es automáticamente mejor.
+- Bot debe evaluar esquemas de position management por separado del edge de entrada.
+- Prioridad de prototipos: comparar clásica vs barrique antes de otras variantes.

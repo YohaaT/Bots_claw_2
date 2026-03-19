@@ -1,0 +1,68 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=WIU7BtOpo10",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.youtube.com/watch?v=WIU7BtOpo10"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=YU5mTyFmx4g&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=2&amp;t=1s",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.youtube.com/watch?v=YU5mTyFmx4g&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=2&amp;t=1s"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=9sizOraO9vs&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=2",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.youtube.com/watch?v=9sizOraO9vs&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=2"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=I2US9uTPbKU&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=3&amp;t=2071s",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.youtube.com/watch?v=I2US9uTPbKU&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=3&amp;t=2071s"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=Tj-jqcsXBG8&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=4&amp;t=3155s",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.youtube.com/watch?v=Tj-jqcsXBG8&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=4&amp;t=3155s"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=SPbXM_jWL0Y&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=5&amp;t=250s",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.youtube.com/watch?v=SPbXM_jWL0Y&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=5&amp;t=250s"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=sa11TSn56N4&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=7",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.youtube.com/watch?v=sa11TSn56N4&amp;list=PLMMFhyI7qOpMPDCxeKWmxpV5L2eUXGCYw&amp;index=7"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=1MYNkc3R7r4",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.youtube.com/watch?v=1MYNkc3R7r4"
+  },
+  {
+    "url": "https://www.dropbox.com/scl/fo/qrwx9lksu1i667n9k61i0/ANXcpRj9rFsJjCr0r9yTfps?rlkey=6ynihol0sv52ejow3o2omfr39&amp;st=kqet7ke1&amp;dl=0",
+    "status": 400,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://www.dropbox.com/scl/fo/qrwx9lksu1i667n9k61i0/ANXcpRj9rFsJjCr0r9yTfps?rlkey=6ynihol0sv52ejow3o2omfr39&amp;st=kqet7ke1&amp;dl=0"
+  },
+  {
+    "url": "https://1drv.ms/t/s!AgkywcWOOhMGxfVwODsjwHPip5tmyg?e=TApv3E",
+    "status": 403,
+    "content_type": null,
+    "final_url": "https://onedrive.live.com/redir?resid=06133A8EC5C13209!1145584&ithint=file%2ctxt&e=TApv3E&migratedtospo=true&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3QvcyFBZ2t5d2NXT09oTUd4ZlZ3T0RzandIUGlwNXRteWc_ZT1UQXB2M0U"
+  },
+  {
+    "url": "https://www.youtube.com/@Eric-Lefort",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://consent.youtube.com/ml?continue=https://www.youtube.com/@Eric-Lefort?cbrd%3D1&gl=ES&hl=es&cm=2&pc=yt&src=1&escs=AZ8E49A9byALovMNdvSxk8ukXgqaoIFp0W_OMbmvYEftc_l1jhjjVWNutRpUQnThc6l_W2TQdsw7EZtqXLagLIRevkyaSjFEUOD1"
+  }
+]

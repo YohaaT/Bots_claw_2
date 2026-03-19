@@ -1,0 +1,218 @@
+Paquete para Tank - ejecución inicial del proyecto de bot de trading
+
+Objetivo
+Usar Tank como nodo principal para backtesting, pruebas, entrenamiento y comparación de configuraciones construidas a partir del material extraído de Mogalef.
+
+Prioridad inmediata
+No explorar combinaciones libres al principio.
+Primero probar combinaciones coherentes derivadas del material.
+
+
+PARTE 1 - Combinaciones iniciales a testear
+
+Bloque A - Tendencia / continuación
+
+Combo A1
+- Contexto: tendencia válida
+- Entrada: pullback en tendencia
+- Stop: dernier haut/bas
+- Salida: aceleración final o resistencia/soporte
+- MM: 0.5% riesgo por trade
+- Guardrails: no mover stop a peor, no sobreoperar
+
+Combo A2
+- Contexto: tendencia válida
+- Entrada: continuación tras corrección hacia zona neutra
+- Stop: Stop Intelligent
+- Salida: action-reaction o gran vela de agotamiento
+- MM: 0.5%
+- Guardrails: máximo X pérdidas por sesión
+
+Combo A3
+- Contexto: tendencia fuerte
+- Entrada: ruptura de consolidación en dirección de tendencia
+- Stop: trailing ATR / SuperStop según impulso
+- Salida: aceleración + cifra redonda
+- MM: 0.5%
+- Guardrails: bloquear si estructura invalida sesgo
+
+
+Bloque B - Range / ruptura
+
+Combo B1
+- Contexto: range claro
+- Entrada: ruptura de range
+- Stop: ATR-based
+- Salida: resistencia/soporte siguiente
+- MM: 0.5%
+- Guardrails: si hay falsa ruptura temprana, no reentrar sin nuevo setup
+
+Combo B2
+- Contexto: range claro con MM20 central
+- Entrada: ruptura + pullback
+- Stop: dernier haut/bas
+- Salida: aceleración o objetivo estructural
+- MM: 0.5%
+- Guardrails: no perseguir precio tras ruptura tardía
+
+
+Bloque C - Impulso
+
+Combo C1
+- Contexto: impulso limpio
+- Entrada: activación por ruptura/continuación
+- Stop: SuperStop
+- Salida: gran vela / action-reaction / agotamiento
+- MM: 0.5%
+- Guardrails: no reenganchar tras aceleración tardía
+
+Combo C2
+- Contexto: impulso breve
+- Entrada: señal alineada con sesgo
+- Stop: trailing ATR
+- Salida: trailing o señal de agotamiento
+- MM: 0.5%
+- Guardrails: cancelar si volatilidad invalida relación riesgo/estructura
+
+
+Bloque D - Seguridad operativa
+
+Combo D1
+- Cualquier contexto válido
+- Entrada: solo si pasa filtros de SA-CONTEXT
+- Stop: el que corresponda al régimen
+- Salida: estructural
+- MM: 0.5%
+- Guardrails estrictos:
+  - no mover stop a peor
+  - no promediar pérdidas
+  - parar tras X pérdidas
+  - no entrar sin contexto
+
+Este combo sirve como baseline seguro.
+
+
+PARTE 2 - Qué debe construir Tank
+
+1. Catálogo de reglas atómicas
+Tank debe convertir el material en reglas separadas:
+- reglas de contexto
+- reglas de entrada
+- reglas de stop
+- reglas de salida
+- reglas de MM
+- reglas guardrail
+
+2. Módulos base
+Tank debe implementar primero módulos separables:
+- context
+- entry
+- stop
+- exit
+- risk
+- guard
+
+3. Probador de combinaciones
+Tank debe crear un runner que permita:
+- activar/desactivar módulos
+- cambiar familias de stop
+- cambiar salida
+- fijar MM
+- medir métricas comparables
+
+
+PARTE 3 - Métricas mínimas que debe reportar
+
+Por cada combinación:
+- win rate
+- expectancy
+- profit factor
+- max drawdown
+- average trade
+- número de trades
+- racha máxima de pérdidas
+- ratio beneficio/riesgo medio
+- cuánto empeora si se endurecen guardrails
+
+
+PARTE 4 - Criterios de descarte
+
+Descartar combos que:
+- necesiten mover stop a peor
+- dependan de promediar pérdidas
+- tengan drawdown excesivo
+- funcionen solo por sobreoptimización
+- hagan demasiados trades con poco edge
+- rompan reglas operativas del material
+
+
+PARTE 5 - Instrucciones exactas para Tank
+
+Prompt sugerido para Tank:
+
+"""
+Quiero que actúes como nodo principal de investigación y ejecución técnica para un bot de trading basado en el material de Mogalef ya extraído.
+
+Objetivo:
+Construir una primera fase de sistema semirreglado para backtesting y comparación de configuraciones.
+
+Prioridades:
+1. No explorar combinaciones arbitrarias al principio.
+2. Empezar solo con combinaciones coherentes derivadas del material.
+3. Separar el sistema en módulos: contexto, entrada, stop, salida, riesgo y guardrails.
+4. Implementar un runner de backtest que permita comparar combinaciones de módulos.
+5. Reportar métricas comparables y descartar combos frágiles.
+
+Guardrails obligatorios:
+- no mover stop a peor
+- no promediar pérdidas
+- no entrar sin contexto válido
+- no sobreoperar
+- parar tras X pérdidas consecutivas
+
+Primer trabajo:
+A) construir catálogo de reglas atómicas desde los TXT ya generados
+B) implementar prototipo de módulos base
+C) definir y ejecutar las combinaciones iniciales A1, A2, A3, B1, B2, C1, C2, D1
+D) devolver ranking inicial, métricas, observaciones y siguientes pasos
+
+Criterio de diseño:
+Primero robustez y claridad modular. Después optimización.
+No sacrificar seguridad por más trades.
+"""
+
+
+PARTE 6 - Cómo se vería el flujo
+
+1. SA-CONTEXT clasifica mercado
+2. SA-ENTRY decide si existe setup válido
+3. SA-GUARD valida que la operación esté permitida
+4. SA-STOPS asigna stop según régimen
+5. SA-RISK calcula tamaño y valida MM
+6. SA-EXIT decide salidas estructurales
+7. Runner ejecuta backtest
+8. SA-COMBOS compara resultados
+
+
+PARTE 7 - Mi recomendación final
+
+Primer ciclo de Tank:
+- baseline seguro D1
+- luego A1 y B1
+- después C1
+- luego resto de combinaciones
+
+Orden recomendado de prueba:
+1. D1
+2. A1
+3. B1
+4. C1
+5. A2
+6. B2
+7. C2
+8. A3
+
+Razón:
+primero robustez,
+luego setups estructurales,
+después impulsos y variantes más sensibles.

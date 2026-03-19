@@ -1,0 +1,258 @@
+Plan propuesto para Tank - arquitectura de subagentes para bot de trading
+
+Objetivo
+Usar Tank como nodo principal de trading para backtesting, pruebas, entrenamiento y comparación de configuraciones derivadas del material de Mogalef.
+
+Principio general
+No organizar primero por herramienta aislada, sino por función operativa. Después añadir un nivel combinador para probar configuraciones completas.
+
+Arquitectura recomendada
+
+Nivel 1 - Subagentes base por función
+
+1. SA-CONTEXT
+Responsabilidad:
+- clasificar régimen de mercado
+- detectar tendencia / rango / corrección
+- aplicar filtros de contexto
+- marcar zonas relevantes
+
+Entradas:
+- OHLCV
+- indicadores de contexto
+- soportes/resistencias
+- configuración de mercado
+
+Salidas:
+- market_regime
+- direction_bias
+- confidence
+- key_levels
+- allowed_setups
+
+2. SA-ENTRY
+Responsabilidad:
+- detectar setups de entrada válidos
+- ruptura de rango
+- pullback
+- action-reaction
+- continuación de tendencia
+
+Entradas:
+- datos de mercado
+- resultado de SA-CONTEXT
+- reglas de setups extraídas de videos
+
+Salidas:
+- entry_signal
+- entry_type
+- entry_price_zone
+- invalidation_level
+- setup_score
+
+3. SA-EXIT
+Responsabilidad:
+- detectar salidas por señal de mercado
+- aceleración final
+- action-reaction
+- gran vela de agotamiento
+- llegada a resistencia/soporte/chiffre rond
+
+Entradas:
+- posición abierta
+- contexto actual
+- estructura del precio
+- reglas de salida extraídas
+
+Salidas:
+- exit_signal
+- exit_reason
+- urgency
+- partial_or_full_exit
+
+4. SA-STOPS
+Responsabilidad:
+- seleccionar y gestionar el stop adecuado
+- stop inicial
+- trailing stop
+- distinguir impulso vs tendencia
+
+Familias a probar:
+- ATR-based
+- dernier haut/bas
+- trailing ATR
+- stop intelligent
+- superstop
+
+Entradas:
+- entry setup
+- contexto
+- volatilidad
+- estructura del precio
+
+Salidas:
+- initial_stop
+- trailing_mode
+- stop_updates
+- stop_family_selected
+
+5. SA-RISK
+Responsabilidad:
+- money management
+- tamaño de posición
+- control de drawdown
+- límites de pérdidas consecutivas
+- validación de que el stop lógico cabe dentro del riesgo permitido
+
+Entradas:
+- capital
+- riesgo máximo por trade
+- stop real del setup
+- estado diario/semanal
+
+Salidas:
+- size
+- risk_ok
+- reject_trade_reason
+- session_lock_if_needed
+
+6. SA-GUARD-TRADING
+Responsabilidad:
+- convertir la parte psicológica en guardrails operativos
+- impedir errores destructivos
+
+Reglas base:
+- no mover stop a peor
+- no promediar pérdidas
+- no entrar sin contexto válido
+- no entrar por impulso
+- parar tras X pérdidas
+- no sobreoperar
+
+Entradas:
+- propuesta de trade
+- historial de sesión
+- cambios de stop
+- estado del sistema
+
+Salidas:
+- allow / block
+- guard_reason
+- warning_flags
+
+
+Nivel 2 - Subagente combinador
+
+7. SA-COMBOS
+Responsabilidad:
+- probar combinaciones completas de módulos
+- comparar rendimiento
+- rankear configuraciones
+- descartar combinaciones malas
+
+Ejemplos de combinación:
+- contexto + entrada + stop + salida + MM
+- contexto + entrada + guardrails
+- entrada + trailing + salida por señal
+- setup de tendencia + stop de tendencia + MM conservador
+- setup de impulso + superstop + salida rápida
+
+Entradas:
+- catálogo de módulos/reglas
+- datasets de backtest
+- restricciones del proyecto
+
+Salidas:
+- ranking de combinaciones
+- métricas por combo
+- combos descartados
+- recomendaciones de siguientes pruebas
+
+
+Nivel 3 - Subagente de combinaciones derivadas del material
+
+8. SA-MOGALEF-COMBOS
+Responsabilidad:
+- probar solo combinaciones coherentes extraídas de los videos
+- reducir ruido y evitar combinaciones arbitrarias
+
+Combinaciones ya implícitas en el material:
+- contexto + entrada
+- entrada + stop
+- salida + trailing/stop
+- gestión de posición + money management
+- psicología + guardrails operativos
+
+Ejemplos iniciales a testear:
+- ruptura de rango + stop ATR + salida por resistencia
+- continuación de tendencia + dernier haut/bas + salida por aceleración
+- setup de impulso + superstop + salida por gran vela/action-reaction
+- contexto de tendencia + entrada en pullback + trailing ATR + MM 0.5%
+- contexto válido + guardrails estrictos + límite de pérdidas por sesión
+
+Entradas:
+- reglas extraídas de PDFs/videos/txt
+- datos históricos
+- instrumentos y timeframes seleccionados
+
+Salidas:
+- resultados por combinación Mogalef
+- combinaciones prometedoras
+- combinaciones inconsistentes
+- parámetros sugeridos para fase siguiente
+
+
+Flujo operativo recomendado
+
+Fase 1
+- convertir material en reglas atómicas
+- catalogar setups, stops, salidas, filtros y reglas de riesgo
+
+Fase 2
+- implementar subagentes base
+- validar cada módulo por separado
+
+Fase 3
+- implementar SA-MOGALEF-COMBOS
+- probar solo combinaciones derivadas del material
+
+Fase 4
+- implementar SA-COMBOS general
+- ampliar pruebas a combinaciones mixtas
+
+Fase 5
+- comparar resultados y seleccionar shortlist
+- pasar mejores variantes a forward test / paper trading
+
+
+Orden recomendado de implementación
+1. SA-GUARD-TRADING
+2. SA-RISK
+3. SA-CONTEXT
+4. SA-ENTRY
+5. SA-STOPS
+6. SA-EXIT
+7. SA-MOGALEF-COMBOS
+8. SA-COMBOS
+
+Razón:
+Primero seguridad y límites. Después detección. Luego ejecución. Finalmente optimización y combinaciones.
+
+
+Qué debe recibir Tank
+- este plan de subagentes
+- los TXT resumidos por familia
+- lista de combinaciones iniciales derivadas de videos
+- prioridad de pruebas
+- datasets y mercados objetivo
+
+
+Mi recomendación final
+Empezar con un sistema semirreglado:
+- reglas duras y guardrails fijos
+- combinaciones Mogalef primero
+- comparador de resultados después
+
+No empezar con combinaciones libres de todo con todo.
+Primero explotar el material coherente ya extraído.
+Después abrir el espacio de búsqueda.

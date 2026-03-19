@@ -1,0 +1,51 @@
+[
+  {
+    "url": "https://www.mogalef-trading.com/_files/ugd/b60405_c3e30aa74aae49cca072259877cb347e.pdf?index=true",
+    "status": 200,
+    "bytes": 2864117,
+    "path": "/home/ubuntu/.openclaw/workspace/agents/BO/research/mogalef/pdfs/b60405_c3e30aa74aae49cca072259877cb347e.pdf",
+    "content_type": "application/pdf"
+  },
+  {
+    "url": "https://www.mogalef-trading.com/_files/ugd/b60405_4d9a9bc0dda04ff1aff7b375fb096f67.pdf?index=true",
+    "status": 200,
+    "bytes": 3084983,
+    "path": "/home/ubuntu/.openclaw/workspace/agents/BO/research/mogalef/pdfs/b60405_4d9a9bc0dda04ff1aff7b375fb096f67.pdf",
+    "content_type": "application/pdf"
+  },
+  {
+    "url": "https://www.mogalef-trading.com/_files/ugd/b60405_cc5e3bd0803b432680f5c86508d4499a.pdf",
+    "status": 200,
+    "bytes": 2812982,
+    "path": "/home/ubuntu/.openclaw/workspace/agents/BO/research/mogalef/pdfs/b60405_cc5e3bd0803b432680f5c86508d4499a.pdf",
+    "content_type": "application/pdf"
+  },
+  {
+    "url": "https://www.mogalef-trading.com/_files/ugd/b60405_d267f1f7e549439f85e0f0717cca1ca3.pdf",
+    "status": 200,
+    "bytes": 3791275,
+    "path": "/home/ubuntu/.openclaw/workspace/agents/BO/research/mogalef/pdfs/b60405_d267f1f7e549439f85e0f0717cca1ca3.pdf",
+    "content_type": "application/pdf"
+  },
+  {
+    "url": "https://www.mogalef-trading.com/_files/ugd/b60405_d2694b5f35ff4dc9a816c4b48d87fc02.pdf?index=true",
+    "status": 200,
+    "bytes": 1481119,
+    "path": "/home/ubuntu/.openclaw/workspace/agents/BO/research/mogalef/pdfs/b60405_d2694b5f35ff4dc9a816c4b48d87fc02.pdf",
+    "content_type": "application/pdf"
+  },
+  {
+    "url": "https://www.mogalef-trading.com/_files/ugd/b60405_32cdc84d1fdc4d499cd6fa3bc2524cf9.pdf?index=true",
+    "status": 200,
+    "bytes": 2009303,
+    "path": "/home/ubuntu/.openclaw/workspace/agents/BO/research/mogalef/pdfs/b60405_32cdc84d1fdc4d499cd6fa3bc2524cf9.pdf",
+    "content_type": "application/pdf"
+  },
+  {
+    "url": "https://www.mogalef-trading.com/_files/ugd/b60405_e043b5248634425ba21ccd5cd99c1aec.pdf",
+    "status": 200,
+    "bytes": 1273362,
+    "path": "/home/ubuntu/.openclaw/workspace/agents/BO/research/mogalef/pdfs/b60405_e043b5248634425ba21ccd5cd99c1aec.pdf",
+    "content_type": "application/pdf"
+  }
+]

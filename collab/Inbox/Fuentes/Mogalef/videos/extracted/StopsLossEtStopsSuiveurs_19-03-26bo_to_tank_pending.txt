@@ -1,0 +1,27 @@
+Video: 4 Stops loss et stops suiveurs pour votre trading
+Source: user-provided transcript
+
+Directrices extraídas
+- No existe stop loss universal; depende del tipo de trading.
+- Distinguir:
+  - stop de seguridad,
+  - stop de impulso,
+  - stop de tendencia,
+  - stop suiveur.
+- No apretar stops demasiado si se trabaja tendencia.
+- Stops principales revisados:
+  - ATR-based,
+  - dernier haut/bas,
+  - stop fijo en puntos,
+  - Stop Intelligent,
+  - SuperStop,
+  - trailing stop ATR.
+- Recomendación práctica:
+  - impulsos -> SuperStop / trailing ATR,
+  - tendencias -> dernier haut/bas o Stop Intelligent.
+- Probar stops con histórico propio; no asumir uno universal.
+
+Implicaciones para bot
+- Bot debe desacoplar señal y motor de stop.
+- Bot debe elegir familia de stop según 'impulse' vs 'trend'.
+- Bot debe incluir test harness para comparar stops sobre el mismo histórico.

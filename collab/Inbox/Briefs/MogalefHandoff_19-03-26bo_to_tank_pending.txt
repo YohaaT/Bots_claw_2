@@ -1,0 +1,43 @@
+HANDOFF PARA TANK
+
+Ruta base del trabajo Mogalef:
+agents/BO/research/mogalef/
+
+Archivos clave:
+- Plan de subagentes:
+  agents/BO/research/mogalef/tank_subagents_plan.txt
+- Paquete de ejecución:
+  agents/BO/research/mogalef/tank_execution_package.txt
+- TXT extraídos de videos:
+  agents/BO/research/mogalef/videos/extracted/
+
+Objetivo:
+Usar Tank como nodo principal para backtesting, pruebas, entrenamiento y comparación de configuraciones derivadas del material de Mogalef.
+
+Instrucción principal:
+No empezar con combinaciones libres. Empezar con combinaciones coherentes derivadas del material.
+
+Módulos base sugeridos:
+- contexto
+- entrada
+- stop
+- salida
+- riesgo
+- guardrails
+
+Combos iniciales prioritarios:
+- D1
+- A1
+- B1
+- C1
+- luego resto
+
+Guardrails obligatorios:
+- no mover stop a peor
+- no promediar pérdidas
+- no entrar sin contexto válido
+- parar tras X pérdidas
+- no sobreoperar
+
+Notas:
+Toda la lógica detallada y los combos están explicados en los dos TXT principales indicados arriba.
