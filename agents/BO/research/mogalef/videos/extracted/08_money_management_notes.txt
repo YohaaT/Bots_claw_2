@@ -1,0 +1,21 @@
+Video: 6 Money Management
+Source: user-provided transcript
+
+Directrices extraídas
+- Money management no es el stop; es el tamaño de posición relativo al capital.
+- Diseñar MM desde las rachas perdedoras, no desde los trades ganadores.
+- Objetivo: sobrevivir a malas series sin abandonar una método ganadora.
+- Riesgo alto por trade acelera la ruina psicológica y financiera.
+- 1% de capital por trade puede ser demasiado; 0.5% aparece como referencia más robusta.
+- Riesgo constante en dinero puede sobrevivir mejor que riesgo porcentual agresivo cuando crece el capital.
+- No operar un setup si el stop lógico queda fuera de la zona de money management.
+- Si no cabe con el tamaño deseado:
+  - reducir tamaño,
+  - o esperar mejor precio,
+  - pero no forzar el trade.
+
+Implicaciones para bot
+- Bot debe calcular tamaño por capital y stop real del setup.
+- Bot debe rechazar setups cuyo stop lógico no cabe en el MM.
+- Bot debe basar MM en supervivencia a rachas perdedoras.
+- Bot debe diferenciar claramente entre 'risk per trade' y 'stop placement'.

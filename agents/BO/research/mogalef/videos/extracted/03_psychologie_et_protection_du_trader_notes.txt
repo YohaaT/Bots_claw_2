@@ -1,0 +1,25 @@
+Video: 1 Psychologie et protection du trader
+Source: user-provided transcript
+
+Directrices extraídas
+- Detectar temprano pérdida de control emocional.
+- Señales de alarma clave:
+  - alejar stop loss,
+  - promediar pérdidas,
+  - ignorar una invalidación técnica mayor,
+  - entrar apenas se enciende la pantalla por impulso.
+- Si aparece impulso de 'combatir al mercado', ya no se está operando como trader sino como jugador.
+- No mover el stop para evitar dolor; aumenta riesgo sin mejorar el potencial.
+- Promediar a la baja no elimina la pérdida previa; añade un trade nuevo con más riesgo.
+- Si una razón técnica invalida el plan, hay que aceptarlo; no hacer 'autruche'.
+- Money management es regla base; riesgo recomendado muy bajo y estable.
+- Limitar rachas de pérdidas por sesión/día.
+- Usar pocas estrategias, simples y entendidas.
+- No entrar sin plan de trade y sin contexto conocido.
+
+Implicaciones para bot
+- Bot debe tener alarmas/flags de invalidación y no ignorarlas.
+- Bot no debe promediar pérdidas por defecto.
+- Bot no debe mover stops en dirección de más riesgo.
+- Bot debe bloquear entradas impulsivas fuera de setup/contexto definido.
+- Bot debe limitar pérdidas consecutivas por sesión.

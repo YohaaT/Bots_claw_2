@@ -1,0 +1,24 @@
+Video: 3 Sorties de position
+Source: user-provided transcript
+
+Directrices extraídas
+- La calidad de la salida define gran parte del resultado.
+- Jerarquía de salidas, de peor a mejor:
+  - mover stop para evitar pérdida,
+  - salir por miedo,
+  - salir por stop suiveur genérico,
+  - salir por objetivo de mercado,
+  - salir por señales del propio mercado.
+- Salidas por mercado mejores cuando aparecen:
+  - aceleración final,
+  - action-réaction,
+  - gran vela del movimiento,
+  - groupage STPMT,
+  - llegada a cifra redonda / soporte / resistencia.
+- Objetivo debe depender del mercado, no del ego del trader.
+- Un stop suiveur demasiado mecánico devuelve demasiado beneficio al mercado.
+
+Implicaciones para bot
+- Bot debe priorizar salidas por contexto y estructura antes que trailing bruto.
+- Bot debe detectar aceleración, action-reaction y zonas redondas como candidatos de take-profit.
+- Bot debe distinguir entre stop de protección y salida táctica.

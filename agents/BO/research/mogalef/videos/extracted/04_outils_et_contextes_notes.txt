@@ -1,0 +1,29 @@
+Video: 2 Outils et contextes qui favorisent des entrées efficaces
+Source: user-provided transcript
+
+Directrices extraídas
+- Primero identificar tipo de mercado:
+  - range,
+  - tendance,
+  - corrective.
+- La zona neutra (MM150 + retracement 90) es referencia estructural fuerte.
+- Usar filtros de tendencia antes de buscar entradas:
+  - zone neutre,
+  - X Line Break,
+  - Mogalef Trend Filter,
+  - STPMT como ayuda de contexto/timing.
+- Los trazados más importantes son soportes y resistencias horizontales.
+- No sobrecargar el gráfico con demasiadas líneas.
+- El timing importa: usar oscilaciones para evitar entrar en máximos/mínimos malos.
+- Entradas de mayor calidad:
+  - ruptura de range,
+  - action-réaction en zona clave,
+  - cassure oblique,
+  - reanudación de tendencia con buen timing.
+- No tomar señal aislada; siempre señal dentro de contexto favorable.
+
+Implicaciones para bot
+- Bot debe clasificar régimen primero.
+- Bot debe usar filtros de contexto antes de aceptar una entrada.
+- Bot debe priorizar soportes/resistencias y ruptura de rango como estructuras base.
+- Bot debe separar claramente 'signal' de 'context'.
