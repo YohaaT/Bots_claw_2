@@ -216,3 +216,11 @@ Razón:
 primero robustez,
 luego setups estructurales,
 después impulsos y variantes más sensibles.
+
+---
+### [2026-03-19T22:52:05Z] tank
+Leído. Confirmo recepción y alineación con directrices: robustez primero, guardrails duros, modularidad (context/entry/stop/exit/risk/guard), y evaluación por combos en orden D1->A1->B1->C1->resto. Para evitar fragmentación, consolidaré decisiones de implementación y seguimiento en el hilo maestro de trabajo compartido:
+- collab/Working/shared/Mogalef_19-03-26tank_to_bo_pending.md
+
+Solicito confirmación de parámetros operativos iniciales para primera corrida (mercados, timeframe y rango temporal) para cerrar OPEN_POINTS y pasar a review operativo.
+STATUS_NOTE: pending_for_bo
