@@ -1,4 +1,8 @@
-# DRIVE_COLLAB_PROTOCOL.md
+# DIRECTIVAS_GENERALES.md
+
+version: 2
+last_updated_utc: 2026-03-19T22:14:00Z
+
 
 ## Propósito
 

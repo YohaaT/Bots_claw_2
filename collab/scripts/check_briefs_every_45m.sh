@@ -4,12 +4,12 @@ set -euo pipefail
 ROOT="/home/ubuntu/.openclaw/workspace/collab"
 cd /home/ubuntu/.openclaw/workspace
 STAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-DATEDIR="$(date -u +"%d-%m-%y")"
 LOGDIR="$ROOT/logs"
+STATEDIR="$ROOT/state"
 SHAREDDIR="$ROOT/Working/shared"
 BRIEFSDIR="$ROOT/Inbox/Briefs"
 DIRECTDIR="$ROOT/Inbox/Directivas"
-mkdir -p "$LOGDIR" "$SHAREDDIR"
+mkdir -p "$LOGDIR" "$SHAREDDIR" "$STATEDIR"
 
 normalize_topic() {
   local base="$1"
@@ -22,6 +22,46 @@ trace_id() {
 import secrets
 print(secrets.token_hex(4))
 PY
+}
+
+get_version() {
+  local f="$1"
+  awk -F': *' '/^version:/{print $2; exit}' "$f"
+}
+
+check_directives_gate() {
+  local files=(
+    "$DIRECTDIR/DIRECTIVAS_GENERALES.md"
+    "$DIRECTDIR/BO_DRIVE_DIRECTIVES.md"
+  )
+  local changed=0
+  for f in "${files[@]}"; do
+    if [[ ! -f "$f" ]]; then
+      echo "[$STAMP] ERROR: missing directive file $f" >> "$LOGDIR/check_briefs.log"
+      return 1
+    fi
+    local base current last statefile
+    base="$(basename "$f")"
+    current="$(get_version "$f")"
+    [[ -n "$current" ]] || current=0
+    statefile="$STATEDIR/${base}.version"
+    last=0
+    [[ -f "$statefile" ]] && last="$(cat "$statefile")"
+    if [[ "$current" =~ ^[0-9]+$ ]] && [[ "$last" =~ ^[0-9]+$ ]] && (( current > last )); then
+      echo "[$STAMP] Directive version advanced for $base: $last -> $current. Re-read required before processing briefs." >> "$LOGDIR/check_briefs.log"
+      echo "$current" > "$statefile"
+      changed=1
+    elif [[ ! -f "$statefile" ]]; then
+      echo "$current" > "$statefile"
+      changed=1
+      echo "[$STAMP] First directive version registration for $base: $current. Re-read required before processing briefs." >> "$LOGDIR/check_briefs.log"
+    fi
+  done
+  if (( changed == 1 )); then
+    return 1
+  fi
+  echo "[$STAMP] Directive versions unchanged. Brief processing allowed." >> "$LOGDIR/check_briefs.log"
+  return 0
 }
 
 append_or_create_thread() {
@@ -99,13 +139,10 @@ EOF
 }
 
 {
-  echo "[$STAMP] Checking collab/Inbox/Directivas for dated directives"
-  mapfile -t directives < <(find "$DIRECTDIR" -maxdepth 1 -type f -name "*_${DATEDIR}.md" | sort)
-  if [[ ${#directives[@]} -lt 3 ]]; then
-    echo "[$STAMP] WARNING: expected dated directives for today (${DATEDIR}) and found ${#directives[@]}"
-    find "$DIRECTDIR" -maxdepth 1 -type f | sort
-  else
-    echo "[$STAMP] Found dated directives for today (${DATEDIR})"
+  echo "[$STAMP] Checking directive versions before brief processing"
+  if ! check_directives_gate; then
+    echo "[$STAMP] Brief processing halted until directives are re-read under the new version state."
+    exit 0
   fi
 
   echo "[$STAMP] Checking collab/Inbox/Briefs for pending items addressed to BO"

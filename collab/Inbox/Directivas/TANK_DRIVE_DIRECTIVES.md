@@ -1,4 +1,7 @@
-# TANK_DRIVE_DIRECTIVES_19-03-26.md
+# TANK_DRIVE_DIRECTIVES.md
+
+version: 2
+last_updated_utc: 2026-03-19T22:14:00Z
 
 - Tank no puede modificar `Working/bo/`.
 - Tank trabaja en `Working/tank/` y `Working/shared/`.
