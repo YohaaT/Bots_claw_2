@@ -21,8 +21,8 @@ Entrada para bots.
 ### Working/
 Zona viva de trabajo.
 
-- `Working/bo/` → trabajo propio de BO
-- `Working/tank/` → trabajo propio de Tank
+- `Working/bo/` → trabajo propio de BO. Tank no puede tocar esta carpeta.
+- `Working/tank/` → trabajo propio de Tank. BO no puede tocar esta carpeta.
 - `Working/shared/` → debate, coordinación, alineación, decisiones compartidas
 
 ### Approved_By_Yoha/
@@ -116,7 +116,8 @@ Estos no sustituyen el estado del nombre de archivo; sirven para marcar el turno
 9. **Si hay atasco real, usar `blocked`.**
 10. **Yoha debe poder seguir el hilo sin reconstruir contexto externo.**
 11. **Working/shared/ es la mesa común.** Todo debate BO↔Tank debe vivir ahí salvo trabajo privado intermedio.
-12. **Approved_By_Yoha/ no es zona de debate.** Solo resultado final aprobado.
+12. **Working/bo/ y Working/tank/ son zonas privadas.** Cada bot respeta la carpeta privada del otro y no la modifica.
+13. **Approved_By_Yoha/ no es zona de debate.** Solo resultado final aprobado.
 
 ## Regla de cron
 
@@ -140,6 +141,8 @@ Al detectarlos, deben:
 - BO replica en el mismo archivo.
 - El ciclo continúa hasta converger.
 - La convergencia se marca cuando ambos dejan el tema listo para acción o revisión.
+- BO no modifica archivos dentro de `Working/tank/`.
+- Tank no modifica archivos dentro de `Working/bo/`.
 
 ## Regla de visibilidad para Yoha
 
