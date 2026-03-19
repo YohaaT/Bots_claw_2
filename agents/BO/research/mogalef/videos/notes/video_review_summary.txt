@@ -1,0 +1,73 @@
+Mogalef / Eric Lefort video review summary
+Date: 2026-03-19 UTC
+
+Scope
+- Reviewed accessible YouTube video metadata linked from the Mogalef training page.
+- Full subtitle/transcript extraction was attempted from YouTube and third-party transcript endpoints, but automatic transcript access was blocked from this environment.
+- Therefore, conclusions below are based on:
+  1) verified video titles/sequence,
+  2) the structure already observed in the downloaded scripts,
+  3) consistency between titles and code families.
+
+Videos found
+1. Ce que j'aurais voulu savoir avant de me lancer dans le trading
+2. Apprendre le métier de trader - Bases indispensables
+3. 1 Psychologie et protection du trader
+4. 2- Outils et contextes qui favorisent des entrées de trade efficaces
+5. 3-Sorties de position
+6. 4 Gestion de position - L'avantage ignoré par le trader débutant
+7. 4- Stops loss et stops suiveurs pour votre trading
+8. 6 Money Management
+
+What the video set appears to reinforce
+- The material is organized as a trading process, not isolated indicators.
+- Order implied by the videos:
+  - psychology / trader protection,
+  - tools and contexts for good entries,
+  - exits,
+  - position management,
+  - stops and trailing stops,
+  - money management.
+- This sequence matches the codebase structure already found:
+  - entries/signals,
+  - context filters,
+  - stops/targets,
+  - operational filters,
+  - risk sizing / trade management.
+
+Most likely configuration lessons reinforced by the videos
+1. Entries should not be used naked.
+   - Use signal + context/filter.
+   - Best candidates: divergence or breakout + trend/regime filter.
+
+2. Exits are first-class, not an afterthought.
+   - The separate emphasis on exits, management, and trailing stops strongly supports using the Stop Intelligent / Mogalef Stop families as core modules.
+
+3. Position management matters as much as entry quality.
+   - Likely means testing first with one clean entry, then improving with stop/target/management before multiplying indicators.
+
+4. Money management is a dedicated layer.
+   - Confirms risk sizing should be separated from signal logic.
+
+5. Context matters.
+   - "Outils et contextes" lines up with NeutralZone, Trend Filter, XLB state, ATR Min/Max, Block Hours/Day.
+
+Recommended research interpretation from the video set
+- Build prototypes in this order:
+  1) one signal,
+  2) one context filter,
+  3) one stop,
+  4) one target or timed exit,
+  5) one volatility/session filter,
+  6) money management last.
+
+Best initial configurations implied by both videos + code structure
+A. MACD/RSI/CCI/Stoch/Repulse divergence + Trend Filter V2 + Stop Intelligent
+B. Bullish/Bearish Breakout + ATR Min/Max + Mogalef Stop
+C. XLB signal directional + XLB filter/indicator + Stop Intelligent
+D. Breakout/range logic only after base modules are validated (AutoAdaptBreakout in phase 2)
+
+Confidence / limits
+- High confidence on the pedagogical structure.
+- Medium confidence on detailed parameter choices from videos, because transcript/audio content was not directly recoverable here.
+- Action if needed: user can provide the video transcripts or downloaded subtitles for deeper extraction of exact rules/configs.

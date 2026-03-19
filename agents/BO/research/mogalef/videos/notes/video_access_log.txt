@@ -1,0 +1,19 @@
+Video access log
+
+Accessible and identified via noembed/oembed:
+- WIU7BtOpo10 -> Ce que j'aurais voulu savoir avant de me lancer dans le trading
+- YU5mTyFmx4g -> Apprendre le métier de trader - Bases indispensables
+- 9sizOraO9vs -> 1 Psychologie et protection du trader
+- I2US9uTPbKU -> 2- Outils et contextes qui favorisent des entrées de trade efficaces
+- Tj-jqcsXBG8 -> 3-Sorties de position
+- SPbXM_jWL0Y -> 4 Gestion de position - L'avantage ignoré par le trader débutant
+- sa11TSn56N4 -> 4- Stops loss et stops suiveurs pour votre trading
+- 1MYNkc3R7r4 -> 6 Money Management
+
+Transcript attempts
+- YouTube watch pages reachable.
+- Direct/third-party transcript extraction attempted.
+- Result: transcript access blocked / unavailable from this environment.
+
+Implication
+- Review performed from metadata + corpus structure, not full subtitle text.
