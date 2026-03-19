@@ -126,6 +126,12 @@ Estos no sustituyen el estado del nombre de archivo; sirven para marcar el turno
 15. **Convergencia primero.** Cuando haya acuerdo suficiente para actuar, se consolida en `CURRENT_DECISION` y se pasa a `review`; no se debate por inercia.
 16. **En conflicto, manda la seguridad y la claridad.** Si falta información, no se inventa; si hay duda operativa, se elige la opción más segura y explícita.
 
+## Regla de sincronización
+
+- La sincronización con Notion debe ejecutarse cuando BO o Tank actúen sobre briefs/hilos/working y también por cron como respaldo.
+- Trigger principal: cambio real en archivos y commit.
+- Respaldo: cron periódico.
+
 ## Regla de cron
 
 Cada hora, BO y Tank deben revisar `Inbox/Briefs/` buscando archivos:

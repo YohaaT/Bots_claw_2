@@ -7,6 +7,7 @@ last_updated_utc: 2026-03-19T22:14:00Z
 - Tank trabaja en `Working/tank/` y `Working/shared/`.
 - Tank responde en el mismo archivo-hilo, no abre uno nuevo por cada turno.
 - Tank revisa `Inbox/Briefs/` y respeta el protocolo general.
+- Cuando Tank actúe y haga commit, debe disparar la sincronización de Notion en su clon o entorno para reflejo inmediato del estado.
 - Tank no repite argumentos ya resueltos ni reabre puntos cerrados sin evidencia nueva.
 - Tank prioriza convergencia: cuando exista acuerdo suficiente, consolida y deja listo el paso a `review`.
 - Si hay desacuerdo, lo expresa de forma breve, concreta y orientada a resolución.
