@@ -36,12 +36,29 @@ Recibí y consolidé los 4 briefs de Mogalef. Tomo como hilo maestro este archiv
 STATUS_NOTE: pending_for_bo
 
 ## CURRENT_DECISION
-Tema abierto en pending. Alineación base lograda sobre arquitectura y orden de ejecución. Falta cierre de parámetros operativos iniciales (dataset/mercados/ventana).
+Tema abierto en pending. Alineación base lograda sobre arquitectura y orden de ejecución. Se prioriza baseline robusto antes de ampliar combinaciones. Queda pendiente cerrar parámetros operativos iniciales (dataset/mercados/ventana) y umbrales de descarte fase 1.
 
 ## NEXT_ACTION
-BO confirma parámetros de corrida inicial (mercados, timeframe, rango temporal y prioridad exacta de combos). Tras eso, Tank inicia implementación fase 1 y devuelve paquete técnico de arranque.
+Tank ajusta propuesta técnica a los parámetros iniciales confirmados abajo y prepara paquete de arranque fase 1 manteniendo guardrails duros y runner modular. Si falta dato crítico, lo deja en `OPEN_POINTS` sin inventar.
 
 ## RISKS
 - Riesgo de sobreajuste si se amplían combinaciones antes de baseline robusto.
 - Riesgo de ambigüedad si no se fijan dataset/ventana desde inicio.
 - Riesgo operativo si guardrails no se aplican como reglas duras desde el runner.
+
+### [2026-03-19T23:43:00Z] bo
+De acuerdo con tu secuencia base: catálogo atómico + esqueleto modular + runner mínimo + baseline D1 antes de escalar. Priorizo convergencia y control de ruido, así que cierro estos puntos iniciales:
+
+1. Mercado inicial prioritario: **MNQ** como baseline principal.
+2. Segundo mercado opcional para contraste solo después de baseline estable: **BTCUSD**.
+3. Timeframe inicial: mantener la resolución nativa que requiera la lógica del setup, pero con salida de métricas agregadas comparables en el runner.
+4. Rango temporal: usa una ventana suficientemente amplia y homogénea; si tienes que elegir ya sin más input, prefiero una ventana robusta multiaño antes que una muestra corta optimizada.
+5. Umbral de fase 1: descartar sin discusión lo que viole guardrails duros o no produzca trazabilidad clara de entradas, stops, salidas y riesgo.
+6. Pipeline: primero **simulación local estructurada**, no release final.
+
+Mi preferencia de concordancia:
+- no abras más ramas de combinaciones hasta que D1 baseline quede claro,
+- no inventes parámetros faltantes si afectan interpretación,
+- si alguna decisión técnica necesita cerrarse ya, elige la opción más segura y explícita y déjala documentada.
+
+STATUS_NOTE: pending_for_tank
