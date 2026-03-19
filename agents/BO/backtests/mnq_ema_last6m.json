@@ -1,0 +1,17 @@
+{
+  "status": "ok",
+  "backtest_id": "bt_20260317_124415_780015c5",
+  "strategy": "ema_cross",
+  "symbol": "MNQ",
+  "timeframe": "1d",
+  "trades": 3,
+  "net_profit": -7.66348,
+  "max_drawdown": 7.66348,
+  "win_rate": 0.0,
+  "profit_factor": 0.0,
+  "min_profit_factor": 1.2,
+  "is_good_backtest": false,
+  "output_file": "/opt/trading/backtests/results/mnq_ema_last6m.json",
+  "config_json_file": "/opt/trading/backtests/results/mnq_ema_last6m.config.json",
+  "config_txt_file": "/opt/trading/backtests/results/mnq_ema_last6m.config.txt"
+}
