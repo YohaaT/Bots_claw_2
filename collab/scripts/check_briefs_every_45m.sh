@@ -4,9 +4,11 @@ set -euo pipefail
 ROOT="/home/ubuntu/.openclaw/workspace/collab"
 cd /home/ubuntu/.openclaw/workspace
 STAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+DATEDIR="$(date -u +"%d-%m-%y")"
 LOGDIR="$ROOT/logs"
 SHAREDDIR="$ROOT/Working/shared"
 BRIEFSDIR="$ROOT/Inbox/Briefs"
+DIRECTDIR="$ROOT/Inbox/Directivas"
 mkdir -p "$LOGDIR" "$SHAREDDIR"
 
 normalize_topic() {
@@ -97,6 +99,15 @@ EOF
 }
 
 {
+  echo "[$STAMP] Checking collab/Inbox/Directivas for dated directives"
+  mapfile -t directives < <(find "$DIRECTDIR" -maxdepth 1 -type f -name "*_${DATEDIR}.md" | sort)
+  if [[ ${#directives[@]} -lt 3 ]]; then
+    echo "[$STAMP] WARNING: expected dated directives for today (${DATEDIR}) and found ${#directives[@]}"
+    find "$DIRECTDIR" -maxdepth 1 -type f | sort
+  else
+    echo "[$STAMP] Found dated directives for today (${DATEDIR})"
+  fi
+
   echo "[$STAMP] Checking collab/Inbox/Briefs for pending items addressed to BO"
   mapfile -t briefs < <(find "$BRIEFSDIR" -maxdepth 1 -type f \( -name '*_to_bo_pending.*' -o -name '*_to_BO_pending.*' \) | sort)
   if [[ ${#briefs[@]} -eq 0 ]]; then

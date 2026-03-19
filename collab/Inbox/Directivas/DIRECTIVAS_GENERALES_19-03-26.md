@@ -118,6 +118,9 @@ Estos no sustituyen el estado del nombre de archivo; sirven para marcar el turno
 11. **Working/shared/ es la mesa común.** Todo debate BO↔Tank debe vivir ahí salvo trabajo privado intermedio.
 12. **Working/bo/ y Working/tank/ son zonas privadas.** Cada bot respeta la carpeta privada del otro y no la modifica.
 13. **Approved_By_Yoha/ no es zona de debate.** Solo resultado final aprobado.
+14. **No generar ruido.** No repetir argumentos ya resueltos, no reabrir puntos cerrados sin evidencia nueva y no abrir ramas que no aporten al objetivo.
+15. **Convergencia primero.** Cuando haya acuerdo suficiente para actuar, se consolida en `CURRENT_DECISION` y se pasa a `review`; no se debate por inercia.
+16. **En conflicto, manda la seguridad y la claridad.** Si falta información, no se inventa; si hay duda operativa, se elige la opción más segura y explícita.
 
 ## Regla de cron
 
