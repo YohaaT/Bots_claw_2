@@ -1,7 +1,7 @@
 # DIRECTIVAS_GENERALES.md
 
-version: 2
-last_updated_utc: 2026-03-19T22:14:00Z
+version: 3
+last_updated_utc: 2026-03-19T23:24:00Z
 
 
 ## Propósito
@@ -134,18 +134,28 @@ Estos no sustituyen el estado del nombre de archivo; sirven para marcar el turno
 
 ## Regla de cron
 
-Cada hora, BO y Tank deben revisar `Inbox/Briefs/` buscando archivos:
+Cada ejecución de cron debe revisar en este orden:
 
-- dirigidos a ellos (`to_<targetid>`)
-- con estado `pending`
+1. `Inbox/Directivas/`
+2. `Inbox/Briefs/`
+3. `Working/shared/`
+4. `Working/bo/` solo como continuidad interna
 
-Al detectarlos, deben:
+Reglas:
 
-1. leer el archivo
+- Si la versión de una directriz relevante subió, el cron se detiene y obliga a releer antes de procesar trabajo.
+- En `Inbox/Briefs/`, se buscan archivos dirigidos al bot con estado `pending`.
+- En `Working/shared/`, se buscan hilos donde el bot tenga pendiente responder, revisar o consolidar.
+- `Working/bo/` no es bandeja externa; solo sirve para continuidad y contexto interno.
+
+Al detectar trabajo relevante, el bot debe:
+
+1. leer el archivo o hilo
 2. responder dentro del mismo archivo si procede
-3. mover el trabajo a `Working/shared/` si el hilo pasa a debate activo
-4. mantener el mismo archivo como hilo maestro
-5. cambiar a `review` cuando lleguen al punto de acuerdo operativo
+3. mantener `Working/shared/` como hilo maestro de debate
+4. consolidar decisiones en `CURRENT_DECISION`
+5. actualizar `NEXT_ACTION` y `OPEN_POINTS` si aplica
+6. cambiar a `review` cuando se alcance acuerdo operativo real
 
 ## Regla de interacción BO ↔ Tank
 

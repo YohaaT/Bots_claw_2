@@ -7,9 +7,10 @@ STAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 LOGDIR="$ROOT/logs"
 STATEDIR="$ROOT/state"
 SHAREDDIR="$ROOT/Working/shared"
+BODIR="$ROOT/Working/bo"
 BRIEFSDIR="$ROOT/Inbox/Briefs"
 DIRECTDIR="$ROOT/Inbox/Directivas"
-mkdir -p "$LOGDIR" "$SHAREDDIR" "$STATEDIR"
+mkdir -p "$LOGDIR" "$SHAREDDIR" "$STATEDIR" "$BODIR"
 
 normalize_topic() {
   local base="$1"
@@ -48,19 +49,19 @@ check_directives_gate() {
     last=0
     [[ -f "$statefile" ]] && last="$(cat "$statefile")"
     if [[ "$current" =~ ^[0-9]+$ ]] && [[ "$last" =~ ^[0-9]+$ ]] && (( current > last )); then
-      echo "[$STAMP] Directive version advanced for $base: $last -> $current. Re-read required before processing briefs." >> "$LOGDIR/check_briefs.log"
+      echo "[$STAMP] Directive version advanced for $base: $last -> $current. Re-read required before processing work." >> "$LOGDIR/check_briefs.log"
       echo "$current" > "$statefile"
       changed=1
     elif [[ ! -f "$statefile" ]]; then
       echo "$current" > "$statefile"
       changed=1
-      echo "[$STAMP] First directive version registration for $base: $current. Re-read required before processing briefs." >> "$LOGDIR/check_briefs.log"
+      echo "[$STAMP] First directive version registration for $base: $current. Re-read required before processing work." >> "$LOGDIR/check_briefs.log"
     fi
   done
   if (( changed == 1 )); then
     return 1
   fi
-  echo "[$STAMP] Directive versions unchanged. Brief processing allowed." >> "$LOGDIR/check_briefs.log"
+  echo "[$STAMP] Directive versions unchanged. Work processing allowed." >> "$LOGDIR/check_briefs.log"
   return 0
 }
 
@@ -138,10 +139,26 @@ EOF
   fi
 }
 
+scan_shared_for_bo() {
+  local found=0
+  shopt -s nullglob
+  for thread in "$SHAREDDIR"/*.md; do
+    if grep -Eq 'STATUS_NOTE: (pending_for_bo|ready_for_review)' "$thread"; then
+      found=1
+      echo "[$STAMP] Shared thread requires BO attention: $thread" >> "$LOGDIR/check_briefs.log"
+      cp -f "$thread" "$BODIR/"
+    fi
+  done
+  shopt -u nullglob
+  if (( found == 0 )); then
+    echo "[$STAMP] No shared threads currently require BO attention" >> "$LOGDIR/check_briefs.log"
+  fi
+}
+
 {
-  echo "[$STAMP] Checking directive versions before brief processing"
+  echo "[$STAMP] Checking directive versions before work processing"
   if ! check_directives_gate; then
-    echo "[$STAMP] Brief processing halted until directives are re-read under the new version state."
+    echo "[$STAMP] Work processing halted until directives are re-read under the new version state."
     exit 0
   fi
 
@@ -155,4 +172,7 @@ EOF
       append_or_create_thread "$brief"
     done
   fi
+
+  echo "[$STAMP] Checking collab/Working/shared for BO pending or review-ready threads"
+  scan_shared_for_bo
 } >> "$LOGDIR/check_briefs.log" 2>&1
