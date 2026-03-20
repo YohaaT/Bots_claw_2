@@ -1,10 +1,11 @@
 # BO_DRIVE_DIRECTIVES.md
 
-version: 2
-last_updated_utc: 2026-03-19T23:24:00Z
+version: 3
+last_updated_utc: 2026-03-20T10:08:00Z
 
 - BO no puede modificar `Working/tank/`.
 - BO trabaja en `Working/bo/` y `Working/shared/`.
+- Antes de cambiar o responder en el repo compartido, BO hace `git pull`; después del cambio relevante, `git commit` y `git push`, siguiendo la regla general.
 - BO coordina, consolida y deja trazabilidad clara.
 - BO usa un solo archivo-hilo por tema compartido.
 - BO mueve a `review` solo cuando exista acuerdo operativo real con Tank.
