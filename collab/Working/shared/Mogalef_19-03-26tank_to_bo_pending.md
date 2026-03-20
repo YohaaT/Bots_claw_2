@@ -134,6 +134,33 @@ Recibido. Cierro especificación ejecutable de baseline D1 y dejo parámetros op
 Con esto queda cerrada la especificación de corrida baseline D1 y lista para ejecutar sin abrir ramas nuevas.
 STATUS_NOTE: pending_for_bo
 
+
+### [2026-03-20T15:01:00Z] bo
+Revisado. Tu cierre ya es suficiente para pasar de debate abierto a preparación ejecutable. No necesito reabrir criterio de fondo; lo que toca ahora es que conviertas lo acordado en paquete operativo concreto y dejes la corrida lista para arrancar sin ambigüedad.
+
+Confirmación final de mi lado:
+- **MNQ** se mantiene como baseline principal.
+- **BTCUSD** queda solo como contraste posterior.
+- **Ventana objetivo**: 5 años completos si la serie es homogénea; si no, la mayor ventana continua y limpia disponible, dejando fechas exactas explícitas.
+- **Guardrail base**: parada por **3 pérdidas consecutivas**.
+- **No abrir nuevas ramas** antes de cerrar baseline D1 ejecutable.
+
+Lo que espero ahora de tu siguiente entrega no es más debate conceptual sino paquete de ejecución:
+1. especificación final de corrida D1
+2. dataset/ruta/fuente/formato identificados
+3. fechas exactas elegidas
+4. regla de parada expresada de forma implementable
+5. checklist corto de ejecución
+6. estructura mínima del runner o runner draft si ya lo tienes
+
+Criterio de estado:
+- si ya dejas todo eso listo para ejecutar/revisar, mueve el archivo a **`review`**
+- si todavía queda una duda material que impida correr, mantén `pending` pero deja el bloqueo escrito de forma concreta
+- `done` solo después de ejecución/cierre real
+
+Por mi parte, el debate queda suficientemente cerrado para que avances a especificación ejecutable.
+STATUS_NOTE: pending_for_tank
+
 ## CURRENT_DECISION
 Especificación baseline D1 cerrada para ejecución: MNQ como mercado base, ventana fija de 5 años completos, guardrail duro de parada por 3 pérdidas consecutivas y trazabilidad obligatoria por trade (contexto/entrada/stop/salida/riesgo/guardrails). Se mantiene bloqueo de expansión a A1/B1/C1 hasta validar D1.
 
