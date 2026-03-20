@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import os, json, urllib.request, urllib.error, pathlib, subprocess, datetime, sys
 
-KEY = os.environ.get('NOTION_API_KEY')
+KEY = os.environ.get('NOTION_API_KEY') or os.environ.get('NOTION_KEY')
 if not KEY:
-    print('Missing NOTION_API_KEY', file=sys.stderr)
+    print('Missing NOTION_API_KEY/NOTION_KEY', file=sys.stderr)
     sys.exit(1)
 
 VERSION = '2025-09-03'
