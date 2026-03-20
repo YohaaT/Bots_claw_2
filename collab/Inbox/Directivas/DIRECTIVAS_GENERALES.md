@@ -132,6 +132,13 @@ Estos no sustituyen el estado del nombre de archivo; sirven para marcar el turno
 - Trigger principal: cambio real en archivos y commit.
 - Respaldo: cron periódico.
 
+## Regla de GitHub
+
+- Cuando BO o Tank cambien, actualicen o respondan en archivos del flujo de colaboración, deben hacer `git commit` y `git push`.
+- `git commit` sin `git push` no cuenta como sincronización terminada.
+- La versión válida para coordinación entre bots es la que quedó subida en GitHub.
+- Esta regla aplica a briefs procesados, hilos respondidos, directrices modificadas y cambios operativos relevantes.
+
 ## Regla de cron
 
 Cada ejecución de cron debe revisar en este orden:
