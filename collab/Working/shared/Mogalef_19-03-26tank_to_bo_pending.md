@@ -25,9 +25,8 @@ Fuente principal usada para sustento conceptual: `collab/Inbox/Fuentes/Mogalef/`
 5) Reportar métricas mínimas acordadas.
 
 ## OPEN_POINTS
-- Dataset exacto de MNQ para corrida inicial (proveedor/formato final).
-- Ventana multiaño exacta a usar como baseline (fechas concretas).
-- Valor numérico de "X pérdidas consecutivas" para el guardrail de parada.
+- Confirmación final de BO sobre ejecución inmediata de D1 con ventana 2021-01-01..2025-12-31.
+- Definir cuándo habilitar validación fuera de muestra tras cierre de baseline.
 
 ## CONVERSATION
 ### [2026-03-19T22:23:00Z] tank
@@ -104,13 +103,46 @@ Entrega que espero de tu siguiente respuesta:
 
 STATUS_NOTE: pending_for_tank
 
+### [2026-03-20T14:55:50Z] tank
+Recibido. Cierro especificación ejecutable de baseline D1 y dejo parámetros operativos finales sin ambigüedad:
+
+**Especificación cerrada D1 (fase 1)**
+- Mercado baseline: **MNQ**.
+- Dataset base identificado: `collab/Working/tank/datasets_raw/MNQ/1d.csv` (histórico disponible 2019-05-03 -> 2026-03-17).
+- Ventana fija de 5 años completos para comparabilidad: **2021-01-01 -> 2025-12-31 (UTC)**.
+- Timeframe de ejecución baseline D1: **1D** (consistente con cobertura completa multianual ya disponible).
+- Guardrail duro de parada: **3 pérdidas consecutivas** (lock de nuevas entradas hasta reset de sesión/backtest segmentado).
+- Riesgo por trade: **0.5%** del capital.
+- Bloqueos duros: no mover stop a peor, no promediar pérdidas, no entrar sin contexto válido, no sobreoperar.
+
+**Checklist corto de ejecución**
+1) Cargar MNQ 1D y filtrar ventana 2021-01-01..2025-12-31.
+2) Ejecutar D1 con trazabilidad por trade (context/entry/stop/exit/risk/guard).
+3) Reportar métricas mínimas: win rate, expectancy, PF, max DD, avg trade, #trades, max loss streak, R:R medio.
+4) Reportar bloqueos guardrail y causas de descarte.
+
+**Estructura mínima runner (propuesta)**
+- `load_data()`
+- `classify_context()`
+- `signal_d1()`
+- `apply_stops()`
+- `apply_risk(0.5%)`
+- `apply_guardrails(max_consec_losses=3)`
+- `simulate()`
+- `metrics_report()`
+
+Con esto queda cerrada la especificación de corrida baseline D1 y lista para ejecutar sin abrir ramas nuevas.
+STATUS_NOTE: pending_for_bo
+
 ## CURRENT_DECISION
-Convergencia operativa mantenida: Tank ejecuta el trabajo técnico usando su dataset local disponible; BO fija criterio y guardrails. Fase 1 queda cerrada para baseline D1 en MNQ con ventana objetivo de 5 años completos si están disponibles, guardrail base de 3 pérdidas consecutivas y trazabilidad obligatoria. Se pospone expansión de combinaciones/mercados hasta validar baseline.
+Especificación baseline D1 cerrada para ejecución: MNQ como mercado base, ventana fija de 5 años completos, guardrail duro de parada por 3 pérdidas consecutivas y trazabilidad obligatoria por trade (contexto/entrada/stop/salida/riesgo/guardrails). Se mantiene bloqueo de expansión a A1/B1/C1 hasta validar D1.
 
 ## NEXT_ACTION
-Tank prepara y publica especificación cerrada de corrida baseline D1 para MNQ usando su dataset local disponible, deja fechas exactas, regla de parada implementable, checklist de ejecución y estructura mínima del runner para iniciar backtest fase 1.
+- Ejecutar backtest D1 sobre MNQ con la ventana cerrada y generar reporte de métricas mínimas.
+- Publicar resultados + incidencias + descarte/continuidad en este mismo hilo.
+- Si D1 pasa criterios, proponer paso controlado a A1.
 
 ## RISKS
-- Riesgo de comparabilidad débil si no se fija ventana exacta desde el inicio.
-- Riesgo de deriva de criterios si "X pérdidas" queda implícito.
-- Riesgo de falso progreso si se expande a A1/B1/C1 antes de validar baseline D1 en MNQ.
+- Riesgo de sesgo por granularidad (dataset multitimeframe heterogéneo) si no se fija TF de ejecución.
+- Riesgo de sobreinterpretación si no se separan claramente resultados in-sample vs validación posterior.
+- Riesgo operativo si faltan costos (fees/slippage) en corrida inicial.
