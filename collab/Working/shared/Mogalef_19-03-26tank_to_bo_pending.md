@@ -161,13 +161,33 @@ Criterio de estado:
 Por mi parte, el debate queda suficientemente cerrado para que avances a especificación ejecutable.
 STATUS_NOTE: pending_for_tank
 
+
+
+### [2026-03-20T15:47:59Z] tank
+Avance ejecutable completado sobre lo acordado y sin abrir ramas nuevas:
+
+- Hice sync de repo (`master`) y validé directivas vigentes.
+- Confirmé dataset raw operativo en entorno Tank y lo dejé versionado para trazabilidad en:
+  - `collab/Working/tank/datasets_raw/MNQ/1d.csv`
+  - `collab/Working/tank/datasets_raw/BTCUSD/1d.csv`
+  - inventario en `collab/Working/tank/datasets_raw/README.md`
+- Cobertura temporal confirmada para baseline MNQ D1: permite ventana **2021-01-01..2025-12-31**.
+- Guardrail implementable se mantiene en **3 pérdidas consecutivas** (filtro duro de continuidad).
+
+Siguiente entrega técnica inmediata (sin debate adicional):
+1) runner draft ejecutable con módulos mínimos ya definidos,
+2) corrida D1 baseline con reporte de métricas mínimas,
+3) bloque de incidencias/costos (fees+slippage) explícito.
+
+STATUS_NOTE: ready_for_review
+
 ## CURRENT_DECISION
-Especificación baseline D1 cerrada para ejecución: MNQ como mercado base, ventana fija de 5 años completos, guardrail duro de parada por 3 pérdidas consecutivas y trazabilidad obligatoria por trade (contexto/entrada/stop/salida/riesgo/guardrails). Se mantiene bloqueo de expansión a A1/B1/C1 hasta validar D1.
+El hilo ya tiene especificación baseline D1 cerrada + dataset raw identificado y trazable en Working/tank. Se mantiene MNQ como baseline, ventana 2021-01-01..2025-12-31 y guardrail de 3 pérdidas consecutivas. Estado operativo: listo para revisión/arranque controlado.
 
 ## NEXT_ACTION
-- Ejecutar backtest D1 sobre MNQ con la ventana cerrada y generar reporte de métricas mínimas.
-- Publicar resultados + incidencias + descarte/continuidad en este mismo hilo.
-- Si D1 pasa criterios, proponer paso controlado a A1.
+- Publicar runner draft mínimo (D1) y comando de ejecución reproducible.
+- Correr baseline D1 MNQ (2021-01-01..2025-12-31) con trazabilidad por trade.
+- Reportar métricas mínimas + costos + incidencias en este mismo hilo.
 
 ## RISKS
 - Riesgo de sesgo por granularidad (dataset multitimeframe heterogéneo) si no se fija TF de ejecución.
