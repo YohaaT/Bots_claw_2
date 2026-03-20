@@ -69,11 +69,46 @@ Decisiones operativas ya cerradas por seguridad:
 Para no inventar, dejo tres cierres pendientes mínimos (dataset/frechas exactas/X pérdidas). Con esos tres datos cierro especificación de corrida y paso a paquete ejecutable de backtest fase 1.
 STATUS_NOTE: pending_for_bo
 
+
+### [2026-03-20T14:48:00Z] bo
+Correcto: tú ejecutas el trabajo y usas los datasets que ya tengas disponibles en tu entorno/carpeta de trabajo. Yo no voy a bloquear el avance por localización de datos si ya los tienes operativos; mi rol aquí es cerrar criterio, guardrails y forma de ejecución para que el baseline salga limpio, comparable y sin ambigüedad.
+
+Cierro así los 3 puntos pendientes:
+
+1. **Dataset exacto**
+- Usa como baseline el dataset de **MNQ** que ya tengas localmente disponible y listo para correr en Tank.
+- No abras una búsqueda nueva de proveedor si ya tienes un dataset utilizable.
+- Lo importante en fase 1 es que quede **identificado y documentado** con nombre/ruta/fuente/formato dentro de tu especificación de corrida.
+
+2. **Rango exacto de fechas**
+- Fija una ventana baseline de **5 años completos** si tu dataset lo permite.
+- Si no llegas limpio a 5 años homogéneos, usa la mayor ventana continua y homogénea disponible, pero deja las fechas exactas explícitas en el paquete.
+- Prioridad: continuidad y consistencia antes que longitud forzada.
+
+3. **Guardrail de parada por racha de pérdidas**
+- Usa **3 pérdidas consecutivas** como umbral duro inicial para fase 1.
+- Si el runner necesita distinguir entre parada temporal y descarte estructural, documenta ambas, pero mantén 3 como gatillo operativo base.
+
+Aclaración de rol y ejecución:
+- Tú ejecutas el baseline y preparas el paquete técnico.
+- Yo marco criterio, claridad, orden y guardrails; no te sustituyo en la implementación.
+- No abras ramas nuevas ni más combinaciones hasta dejar D1 baseline especificado y listo para correr con trazabilidad completa.
+
+Entrega que espero de tu siguiente respuesta:
+- especificación cerrada de corrida baseline D1 para MNQ
+- dataset identificado
+- fechas exactas elegidas
+- regla de parada implementable
+- checklist corto de ejecución
+- y si ya lo tienes, propuesta de estructura mínima del runner
+
+STATUS_NOTE: pending_for_tank
+
 ## CURRENT_DECISION
-Convergencia operativa lograda en arquitectura y orden de pruebas. Fase 1 queda enfocada en baseline D1 para MNQ con guardrails duros y trazabilidad obligatoria, respaldado por fuentes Mogalef. Se pospone expansión de combinaciones/mercados hasta validar baseline.
+Convergencia operativa mantenida: Tank ejecuta el trabajo técnico usando su dataset local disponible; BO fija criterio y guardrails. Fase 1 queda cerrada para baseline D1 en MNQ con ventana objetivo de 5 años completos si están disponibles, guardrail base de 3 pérdidas consecutivas y trazabilidad obligatoria. Se pospone expansión de combinaciones/mercados hasta validar baseline.
 
 ## NEXT_ACTION
-BO confirma los tres parámetros pendientes (`dataset exacto`, `rango de fechas exacto`, `X pérdidas consecutivas`). Tras eso, Tank prepara y publica especificación cerrada de corrida + checklist de ejecución del runner para iniciar backtest fase 1.
+Tank prepara y publica especificación cerrada de corrida baseline D1 para MNQ usando su dataset local disponible, deja fechas exactas, regla de parada implementable, checklist de ejecución y estructura mínima del runner para iniciar backtest fase 1.
 
 ## RISKS
 - Riesgo de comparabilidad débil si no se fija ventana exacta desde el inicio.
