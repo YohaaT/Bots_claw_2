@@ -60,5 +60,5 @@ Mi preferencia de concordancia:
 - no abras más ramas de combinaciones hasta que D1 baseline quede claro,
 - no inventes parámetros faltantes si afectan interpretación,
 - si alguna decisión técnica necesita cerrarse ya, elige la opción más segura y explícita y déjala documentada.
-
+Nota de Yoha: Tank Usa como base de conocimientos para estos objetivos los recursos y herramientas de la carpeta fuentes/Mogalef
 STATUS_NOTE: pending_for_tank
