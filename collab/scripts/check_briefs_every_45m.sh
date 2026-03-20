@@ -139,14 +139,23 @@ EOF
   fi
 }
 
+last_status_note() {
+  local thread="$1"
+  awk -F'STATUS_NOTE: ' '/STATUS_NOTE: /{val=$2} END{gsub(/^[[:space:]]+|[[:space:]]+$/, "", val); print val}' "$thread"
+}
+
 scan_shared_for_bo() {
   local found=0
   shopt -s nullglob
   for thread in "$SHAREDDIR"/*.md; do
-    if grep -Eq 'STATUS_NOTE: (pending_for_bo|ready_for_review)' "$thread"; then
+    local last_note
+    last_note="$(last_status_note "$thread")"
+    if [[ "$last_note" == "pending_for_bo" || "$last_note" == "ready_for_review" ]]; then
       found=1
-      echo "[$STAMP] Shared thread requires BO attention: $thread" >> "$LOGDIR/check_briefs.log"
+      echo "[$STAMP] Shared thread requires BO attention: $thread (last STATUS_NOTE=$last_note)" >> "$LOGDIR/check_briefs.log"
       cp -f "$thread" "$BODIR/"
+    else
+      echo "[$STAMP] Shared thread skipped for BO: $thread (last STATUS_NOTE=${last_note:-none})" >> "$LOGDIR/check_briefs.log"
     fi
   done
   shopt -u nullglob
