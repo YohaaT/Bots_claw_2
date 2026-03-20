@@ -9,7 +9,7 @@ STATEDIR="$ROOT/state"
 SHAREDDIR="$ROOT/Working/shared"
 BODIR="$ROOT/Working/bo"
 BRIEFSDIR="$ROOT/Inbox/Briefs"
-DIRECTDIR="$ROOT/Inbox/Directivas"
+DIRECTDIR="$ROOT/scripts/directivas"
 mkdir -p "$LOGDIR" "$SHAREDDIR" "$STATEDIR" "$BODIR"
 
 normalize_topic() {

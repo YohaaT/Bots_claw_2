@@ -144,7 +144,7 @@ Estos no sustituyen el estado del nombre de archivo; sirven para marcar el turno
 
 Cada ejecución de cron debe revisar en este orden:
 
-1. `Inbox/Directivas/`
+1. `scripts/directivas/`
 2. `Inbox/Briefs/`
 3. `Working/shared/`
 4. `Working/bo/` solo como continuidad interna

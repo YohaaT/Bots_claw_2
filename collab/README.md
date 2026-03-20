@@ -5,7 +5,7 @@ Estructura maestra local para colaboración entre BO y Tank.
 ## Árbol
 - Inbox/Briefs
 - Inbox/Fuentes/Mogalef
-- Inbox/Directivas
+- scripts/directivas
 - Working/bo
 - Working/tank
 - Working/shared
@@ -17,4 +17,4 @@ Estructura maestra local para colaboración entre BO y Tank.
 - `Working/tank` solo lo toca Tank.
 - El debate compartido vive en `Working/shared`.
 - `Inbox/Briefs` contiene encargos y handoffs pendientes.
-- `Inbox/Directivas` contiene reglas operativas.
+- `scripts/directivas` contiene reglas operativas junto al flujo de scripts.
