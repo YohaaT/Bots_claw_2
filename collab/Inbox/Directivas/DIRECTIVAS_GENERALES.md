@@ -167,6 +167,20 @@ Al detectar trabajo relevante, el bot debe:
 - BO no modifica archivos dentro de `Working/tank/`.
 - Tank no modifica archivos dentro de `Working/bo/`.
 
+## Regla de turno y respuesta vigente
+
+- El bot que tenga el turno según el último `STATUS_NOTE` debe responder en el mismo archivo-hilo dentro de `Working/shared/`.
+- Nunca se interpreta un `STATUS_NOTE` histórico como estado vigente si existe uno más reciente debajo en `## CONVERSATION`.
+- El estado vigente del hilo es siempre el último `STATUS_NOTE` escrito cronológicamente en la conversación.
+- Cada nueva respuesta debe añadirse al final de `## CONVERSATION` con timestamp UTC y autor.
+- Tras responder, el bot debe actualizar de forma coherente:
+  - `STATUS_NOTE` del nuevo turno
+  - `## CURRENT_DECISION`
+  - `## NEXT_ACTION`
+  - `## OPEN_POINTS` si cambió algo relevante
+- Si el turno cambia al otro bot, debe quedar explícito con `pending_for_bo` o `pending_for_tank`.
+- Si ya hay acuerdo operativo suficiente, se usa `ready_for_review`.
+
 ## Regla de visibilidad para Yoha
 
 Todo debe quedar trazable en el propio archivo:
