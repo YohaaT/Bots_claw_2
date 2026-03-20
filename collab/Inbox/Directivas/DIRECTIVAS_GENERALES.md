@@ -1,7 +1,7 @@
 # DIRECTIVAS_GENERALES.md
 
-version: 3
-last_updated_utc: 2026-03-19T23:24:00Z
+version: 4
+last_updated_utc: 2026-03-20T10:03:00Z
 
 
 ## Propósito
@@ -134,7 +134,8 @@ Estos no sustituyen el estado del nombre de archivo; sirven para marcar el turno
 
 ## Regla de GitHub
 
-- Cuando BO o Tank cambien, actualicen o respondan en archivos del flujo de colaboración, deben hacer `git commit` y `git push`.
+- Antes de cambiar, actualizar o responder en archivos del repo compartido, BO o Tank deben sincronizar con GitHub mediante `git pull`.
+- Después del cambio relevante, deben hacer `git commit` y `git push`.
 - `git commit` sin `git push` no cuenta como sincronización terminada.
 - La versión válida para coordinación entre bots es la que quedó subida en GitHub.
 - Esta regla aplica a briefs procesados, hilos respondidos, directrices modificadas y cambios operativos relevantes.
